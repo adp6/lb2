@@ -1,64 +1,67 @@
 using System;
 
-namespace lb2_1
+namespace lb2_2
 {
-    class Address
+    class Employee
     {
-        private int index;
-        private string country;
-        private string city;
-        private string street;
-        private string house;
-        private int apartment;
-
-        public string Country
+        private string Name { get; set; }
+        private string Surname { get; set; }
+        private string Job { get; set; }
+        private int Experience { get; set; }
+        
+        public Employee(string name ,string surname,string job,int experience)
         {
-            get { return country; }
-            set { country = value; }
+            this.Name = name;
+            this.Surname = surname;
+            this.Experience = experience;
+            this.Job = job;
         }
-        public int Index
+        public void Salary_and_tax_calculator()
         {
-            get { return index; }
-            set { index = value; }
-        }
-        public string City
-        {
-            get { return city; }
-            set { city = value; }
-        }
-        public string Street
-        {
-            get { return street; }
-            set { street = value; }
-        }
-        public string House
-        {
-            get { return house; }
-            set { house = value; }
-        }
-        public int Apartment
-        {
-            get { return apartment; }
-            set { apartment = value; }
+            double salary;
+            if (this.Job == "software engineer")
+            {
+                salary = 1200;
+                Console.WriteLine($"Name: {Name} {Surname}\n" +
+             $"Salary : {salary = salary + (200 * this.Experience)}$\n" +
+             $"ПДФО :{salary * 0.18} ВЗ: {salary * 0.015 } ПСП: {salary * 0.22}");
+            }
+            else if (this.Job == "designer")
+            {
+                salary = 900;
+                Console.WriteLine($"Name: {Name} {Surname}\n" +
+             $"Salary : {salary = salary + (100 * this.Experience)}$\n" +
+             $"ПДФО :{salary * 0.18} ВЗ: {salary * 0.015 } ПСП: {salary * 0.22}");
+            }
+            else if (this.Job == "3d artist")
+            {
+                salary = 850;
+                Console.WriteLine($"Name: {Name} {Surname}\n" +
+             $"Salary : {salary = salary + (150 * this.Experience)}$\n" +
+             $"ПДФО :{salary * 0.18}$ ВЗ: {salary * 0.015 }$ ПСП: {salary * 0.22}$");
+            }
+            else
+            {
+                Console.WriteLine("the job you entered isn't in the list");
+            }
         }
     }
     class Program
     {
         static void Main(string[] args)
         {
-            Address address = new Address();
-            address.Index = 02166;
-            address.Country = "Ukraine";
-            address.City = "Kyiv";
-            address.Street = "lisovyi prospect";
-            address.House = "41";
-            address.Apartment = 236;
-            Console.WriteLine($"Index : {address.Index}\n" +
-                $"Country : {address.Country}\n" +
-                $"City : {address.City}\n" +
-                $"Street : {address.Street}\n" +
-                $"House : {address.House}\n" +
-                $"Apartment : {address.Apartment}");
+            Console.Write("Name : ");
+            string name  = Console.ReadLine();
+            Console.Write("Surname : ");
+            string surname = Console.ReadLine();
+            Console.Write("Job (software engineer , designer , 3d artist): ");
+            string job = Console.ReadLine();
+            Console.Write("Experience (in years) : ");
+            int experience = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("-----------------------------");
+            Employee employee = new Employee(name, surname,job,experience);
+            employee.Salary_and_tax_calculator();
+            Console.ReadKey();
         }
     }
 }

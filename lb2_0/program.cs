@@ -1,6 +1,6 @@
 using System;
 
-namespace lb2_1
+namespace lb2
 {
     class Address
     {
